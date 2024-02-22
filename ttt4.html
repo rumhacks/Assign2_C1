@@ -12,6 +12,7 @@
             display: grid;
             text-align: center;
             align-items: center;
+            border-radius: 15px;
         
         }
 
@@ -56,6 +57,64 @@
         }
 
     </style>
+    <script>
+        function startTurn () {
+
+            n = Math.floor(Math.random() * 2); 
+            if (n == 0) {
+                turn = 'X'
+            } 
+    
+            else {
+                turn = 'O'
+            }
+
+            changeTurn()
+    
+        }
+
+
+        function changeTurn () {
+            if (turn == 'X') {
+                turn = 'O'
+            } 
+    
+            else {
+                turn = 'X'
+            }
+    
+        let turnBox = document.querySelector('.turn');
+        turnBox.innerHTML  = turn + ' is Turn';
+            
+        }
+
+        window.onload = function () {
+            
+            startTurn()
+
+
+            let box = document.querySelectorAll('div.square');
+            
+            //Need help with this when clicked inside it does the alert
+            for (j of box) {
+            j.addEventListener('click', function() {
+
+                if (this.innerHTML != "X" && this.innerHTML != "O") {
+                    this.innerHTML = turn;
+                    //console.log("mark1");
+                    changeTurn();
+                } else {
+                    alert ('Try again in another box');
+                    //console.log("mark2");
+                }
+
+               
+                });
+            }
+
+        }
+
+    </script>
 </head>
 <body> 
     <h1>Tic Tac Toe Game</h1>
@@ -69,26 +128,22 @@
                 document.write( "<div class='square' id='" + id + "'></div>" );
             }
             
+
         </script>
     </div>
     
     <br>
-    <div class="turn"> X is Turn</div>
+    <div class="turn"></div>
     <br>
     <div class="winner"> X is Winner</div>
     <br>
-    
+    <button id = "restartButton"> Restart </button>
+
     <script>
-    let box = document.querySelectorAll('div.square');
-    
-    for (j of box) {
-      j.addEventListener('click', function() {
-        this.innerHTML = "X";
-        alert (this.id)
-        //document.querySelector("#"+this.id).innerText = "X";
-        });
-    }
-    
+
+    turn = 'X'; 
+
+
     </script>  
 </body>
 </html>
